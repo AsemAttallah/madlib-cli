@@ -62,21 +62,15 @@ def take_values():
         x=input(f"Please add {expected_parts[i]} :")
         list111.append(x)
     return list111
-print(
-    '''
-    ********************************
-    ** Welcome to the madlib-game **
-    ********************************
-    ''')
-# take_values()
-# merge(expected_stripped,take_values()) 
-def read_template(path):
-    try:
-        with open(path, 'r') as file:
-            return file.read()
-    except FileNotFoundError:
-        print(f"File not found: {path}")
-        raise
+
+print(merge(expected_stripped,take_values())) 
+# def read_template(path):
+#     try:
+#         with open(path, 'r') as file:
+#             return file.read()
+#     except FileNotFoundError:
+#         print(f"File not found: {path}")
+#         raise
 
 
    
@@ -86,7 +80,6 @@ def read_template(path):
    
 
 
-# print(merge("It was a {} and {} {}.", ("dark", "stormy", "night")))
 
 
 
