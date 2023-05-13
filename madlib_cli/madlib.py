@@ -45,6 +45,8 @@ def text_writing(file_name,text):
         f.write(text) #delete all then add ("nothing ...")
 
 if __name__=="__main__":
+    # file_path="assets/example.txt"
+    # res=read_template(file_path)
     try:
         file_path="assets/example.txt"
         res=read_template(file_path)
