@@ -29,7 +29,6 @@ def test_merge():
 
 # @pytest.mark.skip("pending")
 def test_read_template_raises_exception_with_bad_path():
-
     with pytest.raises(FileNotFoundError):
         path = "missing.txt"
         read_template(path)
