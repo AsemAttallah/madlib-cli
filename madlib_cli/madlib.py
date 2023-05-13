@@ -1,16 +1,28 @@
 def intro():
+    '''
+    Welcoming message
+    '''
     return   '''
     ********************************
     ** Welcome to the madlib-game **
     ********************************
     '''
 def read_template(file_path):
-    with open(file_path, mode="r") as f:
-        res=f.read()
-        return (res) 
-
+    '''
+    Read file from file path
+    '''
+    try:
+        with open(file_path, mode="r") as f:
+            res=f.read()
+            return (res) 
+    except FileNotFoundError:
+        raise FileNotFoundError(f"File not found at path: {file_path}")
 
 def parse_template(input_str):
+    '''
+    Take a words between curly brakets,And make it empty  
+    
+    '''
     originStr=input_str
     deleted_words = []
     while '{' in input_str and '}' in input_str:
@@ -28,12 +40,18 @@ def parse_template(input_str):
 
     
 def merge(text,user_values):
+    '''
+    Merging user input words with empty spaces in the paragraph 
+    '''
     global output 
     output = text.format(*user_values)
     return output
 
     
 def take_values():
+    '''
+    Taking input from the user
+    '''
     all_user_inputs=[]
     for i in range(len(expected_parts)):
         userInput=input(f"Please add {expected_parts[i]} :")
@@ -41,31 +59,18 @@ def take_values():
     return all_user_inputs
 
 def text_writing(file_name,text):
+    '''
+    Writing the output in the specific file
+    '''
     with open(file_name, mode="w") as f:
         f.write(text) 
 
 
 
 if __name__=="__main__":
-    class FileNotFoundError(Exception):
-        def __init__(self, file_path):
-            super().__init__()
-    file_path_new = input('Enter file_path without " ":')
     file_path="assets/example.txt"
-    try: 
-        if file_path_new!=file_path:
-            raise FileNotFoundError(file_path_new)
-        else:
-            res=read_template(file_path)
-    except FileNotFoundError:
-        print (f"please fix this file path: {file_path_new}")
-    
-    # try:
-    #     file_path="assets/example.txt"
-    #     res=read_template(file_path)
-    # except FileNotFoundError:
-    #     print(f"**File not found please check the file path:{file_path}**")
-    
+    res=read_template(file_path)
+
     expected_stripped=parse_template(res)[0]
     expected_parts=parse_template(res)[1]
     example_output_file="assets/example_output.txt"
