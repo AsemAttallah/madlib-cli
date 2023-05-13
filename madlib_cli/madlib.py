@@ -42,16 +42,29 @@ def take_values():
 
 def text_writing(file_name,text):
     with open(file_name, mode="w") as f:
-        f.write(text) #delete all then add ("nothing ...")
+        f.write(text) 
+
+
 
 if __name__=="__main__":
-    # file_path="assets/example.txt"
-    # res=read_template(file_path)
-    try:
-        file_path="assets/example.txt"
-        res=read_template(file_path)
+    class FileNotFoundError(Exception):
+        def __init__(self, file_path):
+            super().__init__()
+    file_path_new = input('Enter file_path without " ":')
+    file_path="assets/example.txt"
+    try: 
+        if file_path_new!=file_path:
+            raise FileNotFoundError(file_path_new)
+        else:
+            res=read_template(file_path)
     except FileNotFoundError:
-        print(f"**File not found please check the file path:{file_path}**")
+        print (f"please fix this file path: {file_path_new}")
+    
+    # try:
+    #     file_path="assets/example.txt"
+    #     res=read_template(file_path)
+    # except FileNotFoundError:
+    #     print(f"**File not found please check the file path:{file_path}**")
     
     expected_stripped=parse_template(res)[0]
     expected_parts=parse_template(res)[1]
